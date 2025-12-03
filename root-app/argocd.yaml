@@ -12,7 +12,7 @@ spec:
     chart: argo-cd
     targetRevision: 9.1.5
     helm: 
-      valuesFiles: 
+      valueFiles: 
       - $values/infrastructure/argocd-values.yaml
   
   - repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
