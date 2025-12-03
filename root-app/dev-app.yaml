@@ -31,7 +31,7 @@ spec:
       project: default
       
       source:
-        repoURL: https://github.com/your-org/your-gitops-repo.git
+        repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
         targetRevision: HEAD
         # The path to the Helm Chart is dynamically set to the discovered folder
         path: '{{path}}'
