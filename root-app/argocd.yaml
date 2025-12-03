@@ -12,10 +12,10 @@ spec:
     chart: argo
     targetRevision: 9.1.1
     helm: 
-      valuesFiles:
+      valuesFiles: 
       - $values/infrastructure/argocd-values.yaml
   
-  - repoURL:
+  - repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
     targetRevision: HEAD
     ref: values
 
