@@ -7,14 +7,17 @@ metadata:
     app.kubernetes.io/part-of: infrastructure
 spec:
   project: default
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
+  sources:
+  - repoURL: https://prometheus-community.github.io/helm-charts
     chart: kube-prometheus-stack
-    targetRevision: 79.11.0
-  
+    targetRevision: 9.11.0
     helm:
-       valueFiles:
-        - infrastructure/kube-prometheus-stack.yaml
+       valueFilesSources:
+        - $values-repo/infrastructure/kube-prometheus-stack.yaml
+
+  - repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
+    ref: values-repo
+    targetRevision: HEAD
 
   destination:
     server: https://kubernetes.default.svc
