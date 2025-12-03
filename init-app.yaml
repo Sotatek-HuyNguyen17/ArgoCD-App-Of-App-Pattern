@@ -9,7 +9,7 @@ spec:
     name: in-cluster
   source:
     path: root-app
-    repoURL: "https://github.com/devsuccess101/ds101-cluster"
+    repoURL: "https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern"
     targetRevision: HEAD #latest revision on the branch
     directory:
       recurse: true

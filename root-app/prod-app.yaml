@@ -11,7 +11,7 @@ spec:
   generators:
   - git:
       # Use the same Git repository that holds this ApplicationSet definition
-      repoURL: https://github.com/your-org/your-gitops-repo.git
+      repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
       revision: HEAD
       # Scan the 'prod-app' folder for subdirectories
       directories:

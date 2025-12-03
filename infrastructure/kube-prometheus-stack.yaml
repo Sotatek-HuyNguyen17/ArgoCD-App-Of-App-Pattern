@@ -1,0 +1,15 @@
+prometheus:
+  service:
+    port: 9090
+
+# prometheusOperator:
+#   enabled: true
+  
+grafana:
+  adminUser: admin
+  adminPassword: prom-operator
+  enabled: true
+  service:
+    port: 80
+    
+
