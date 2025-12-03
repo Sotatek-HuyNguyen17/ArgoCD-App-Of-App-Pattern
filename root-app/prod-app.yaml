@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: production-microservices
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: application-of-applications
+    environment: prod
+spec:
+  # The generators field defines how to discover the applications to create.
+  generators:
+  - git:
+      # Use the same Git repository that holds this ApplicationSet definition
+      repoURL: https://github.com/your-org/your-gitops-repo.git
+      revision: HEAD
+      # Scan the 'prod-app' folder for subdirectories
+      directories:
+      - path: prod-app/*
+  
+  # The template defines the ArgoCD Application resource that will be generated 
+  # for each discovered directory.
+  template:
+    metadata:
+      # The Application name is dynamically generated using the discovered folder name (path.basename)
+      name: 'prod-{{path.basename}}'
+      namespace: argocd
+      labels:
+        environment: prod
+        app.kubernetes.io/part-of: prod-microservices
+    spec:
+      project: default
+      
+      source:
+        repoURL: https://github.com/your-org/your-gitops-repo.git
+        targetRevision: HEAD
+        # The path to the Helm Chart is dynamically set to the discovered folder
+        path: '{{path}}'
+        
+        # Helm configuration is generic and assumes each chart has a 'values.yaml'
+        helm:
+          parameters: [] # Use default values, or specify a values file relative to the chart path
+          
+      destination:
+        server: https://kubernetes.default.svc
+        # All production microservices deploy to the same target namespace
+        namespace: my-app-prod 
+        
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

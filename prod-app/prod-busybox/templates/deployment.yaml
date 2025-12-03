@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: lesson6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25
+        ports:
+        - containerPort: 80
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      initContainers:
+      - name: init-html
+        image: busybox:1.36
+        command:
+        - sh
+        - -c
+        - |
+          echo "<html><head><title>CTC Training</title></head><body><h1>Wellcome to CTC Training</h1><p>Pod: $(POD_NAME)</p></body></html>" > /work-dir/index.html
+        env:
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: html-volume
+          mountPath: /work-dir
+      volumes:
+      - name: html-volume
+        emptyDir: {}

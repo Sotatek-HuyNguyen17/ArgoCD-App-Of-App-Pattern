@@ -1,0 +1,8 @@
+configs:
+  params:
+    server.disable.auth: "true"
+    server.insecure: "true"
+
+dex:
+  enabled: false
+

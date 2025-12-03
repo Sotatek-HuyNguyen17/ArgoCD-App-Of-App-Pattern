@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-bootstrap
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    name: in-cluster
+  source:
+    path: root-app
+    repoURL: "https://github.com/devsuccess101/ds101-cluster"
+    targetRevision: HEAD #latest revision on the branch
+    directory:
+      recurse: true
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
