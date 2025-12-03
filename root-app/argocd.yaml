@@ -7,14 +7,17 @@ metadata:
     app.kubernetes.io/part-of: application-of-applications
 spec:
   project: default
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
+  sources:
+  - repoURL: https://argoproj.github.io/argo-helm
     chart: argo
     targetRevision: 9.1.1
+    helm: 
+      valuesFiles:
+      - $values/infrastructure/argocd-values.yaml
   
-    helm:
-       valueFiles:
-        - argo-cd/values.yaml
+  - repoURL:
+    targetRevision: HEAD
+    ref: values
 
   destination:
     server: https://kubernetes.default.svc
