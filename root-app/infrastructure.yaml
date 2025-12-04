@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: argocd
     name: in-cluster
+    namespace: shared-service
   source:
     path: infrastructure
     repoURL: "https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern"

@@ -5,7 +5,6 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: shared-service
     name: in-cluster
   source:
     path: common-service
@@ -21,4 +20,3 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
-      - PruneLast=true
