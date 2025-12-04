@@ -13,7 +13,7 @@ spec:
     targetRevision: 9.1.5
     helm: 
       valueFiles: 
-      - $values/infrastructure/argocd-values.yaml
+      - $values/common-service/override/argocd-values.yaml
   
   - repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
     targetRevision: HEAD

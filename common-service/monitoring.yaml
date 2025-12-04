@@ -13,7 +13,7 @@ spec:
     targetRevision: 79.11.0
     helm:
        valueFiles:
-        - $values-repo/infrastructure/kube-prometheus-stack.yaml
+        - $values-repo/common-service/override/kube-prometheus-stack.yaml
 
   - repoURL: https://github.com/Sotatek-HuyNguyen17/ArgoCD-App-Of-App-Pattern
     ref: values-repo
