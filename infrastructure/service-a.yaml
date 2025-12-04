@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: shared-service-b
+  name: shared-service-a
   namespace: shared-service
 spec:
   type: ClusterIP
